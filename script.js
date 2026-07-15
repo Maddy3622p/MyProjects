@@ -19,7 +19,7 @@
   const loginPass = document.getElementById('loginPass');
   const userGreeting = document.getElementById('userGreeting');
 
-  const credentials = {username:'customer', password:'grocery123'};
+  const credentials = {username:'Maddy', password:'grocery123'};
   let currentUser = localStorage.getItem('greenleafUser');
 
   function format(n){return Number(n).toFixed(2)}

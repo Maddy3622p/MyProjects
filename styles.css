@@ -10,7 +10,7 @@ body{margin:0;color:#222;background:linear-gradient(180deg,#f0faf1 0%,#eef7f0 10
 .login-button,.logout-button,.cart-button{border-radius:999px;padding:10px 14px;border:1px solid #d7e2d9;background:#fff;color:#222;cursor:pointer;transition:all .2s ease}
 .login-button:hover,.logout-button:hover,.cart-button:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,0,0,.08)}
 .logout-button{display:none}
-.hero{background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(239,247,238,.95)),url('https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;padding:40px;border-radius:16px;margin:18px 0;color:#163b2d;box-shadow:0 15px 40px rgba(0,0,0,.06)}
+.hero{background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(239,247,238,.95)),url('https://images.unsplash.com/photo-1511688878354-5f362f4b63ef?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;padding:40px;border-radius:16px;margin:18px 0;color:#163b2d;box-shadow:0 15px 40px rgba(0,0,0,.06)}
 .hero h2{margin:0 0 12px;font-size:2.4rem;letter-spacing:.02em}
 .hero p{margin:0;font-size:1.05rem;max-width:620px;line-height:1.6}
 .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin:18px 0}
