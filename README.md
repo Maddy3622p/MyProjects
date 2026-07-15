@@ -14,9 +14,9 @@ GreenLeaf Grocery is a simple static demo website showcasing a fresh product gri
 
 ## Files
 
-- `web.html` — main page with products and cart UI
-- `styles.css` — styling
-- `script.js` — cart and search behavior
+- `web.html` — main page with products, cart, and login modal
+- `styles.css` — styling and layout
+- `script.js` — cart, search, and login behavior
 
 ## Next steps
 
