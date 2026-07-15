@@ -9,6 +9,18 @@
   const cartToggle = document.getElementById('cartToggle');
   const closeCart = document.getElementById('closeCart');
   const checkout = document.getElementById('checkout');
+  const loginToggle = document.getElementById('loginToggle');
+  const logoutButton = document.getElementById('logoutButton');
+  const loginModal = document.getElementById('loginModal');
+  const closeLogin = document.getElementById('closeLogin');
+  const loginForm = document.getElementById('loginForm');
+  const loginError = document.getElementById('loginError');
+  const loginUser = document.getElementById('loginUser');
+  const loginPass = document.getElementById('loginPass');
+  const userGreeting = document.getElementById('userGreeting');
+
+  const credentials = {username:'customer', password:'grocery123'};
+  let currentUser = localStorage.getItem('greenleafUser');
 
   function format(n){return Number(n).toFixed(2)}
 
@@ -44,6 +56,39 @@
     updateCartUI();
   }
 
+  function openLogin(){ loginModal.setAttribute('aria-hidden','false'); }
+  function closeLoginModal(){ loginModal.setAttribute('aria-hidden','true'); loginError.textContent=''; loginForm.reset(); }
+
+  function updateLoginUI(){
+    if(currentUser){
+      loginToggle.style.display = 'none';
+      logoutButton.style.display = 'inline-flex';
+      userGreeting.textContent = `Hello, ${currentUser}`;
+    } else {
+      loginToggle.style.display = 'inline-flex';
+      logoutButton.style.display = 'none';
+      userGreeting.textContent = '';
+    }
+  }
+
+  function login(username,password){
+    if(username === credentials.username && password === credentials.password){
+      currentUser = username;
+      localStorage.setItem('greenleafUser', currentUser);
+      updateLoginUI();
+      closeLoginModal();
+      return true;
+    }
+    loginError.textContent = 'Invalid username or password';
+    return false;
+  }
+
+  function logout(){
+    currentUser = null;
+    localStorage.removeItem('greenleafUser');
+    updateLoginUI();
+  }
+
   productsEl.addEventListener('click', e=>{
     const btn = e.target.closest('.add-to-cart');
     if(!btn) return;
@@ -58,9 +103,9 @@
     const inc = e.target.closest('.inc');
     const dec = e.target.closest('.dec');
     const rm = e.target.closest('.rm');
-    if(inc){ const id=inc.dataset.id; cart[id].qty+=1; updateCartUI(); }
-    if(dec){ const id=dec.dataset.id; cart[id].qty-=1; if(cart[id].qty<=0) delete cart[id]; updateCartUI(); }
-    if(rm){ const id=rm.dataset.id; delete cart[id]; updateCartUI(); }
+    if(inc){ const id = inc.dataset.id; cart[id].qty += 1; updateCartUI(); }
+    if(dec){ const id = dec.dataset.id; cart[id].qty -= 1; if(cart[id].qty <= 0) delete cart[id]; updateCartUI(); }
+    if(rm){ const id = rm.dataset.id; delete cart[id]; updateCartUI(); }
   });
 
   cartToggle.addEventListener('click', ()=>{
@@ -70,13 +115,26 @@
   closeCart.addEventListener('click', ()=>cartPanel.setAttribute('aria-hidden','true'));
 
   checkout.addEventListener('click', ()=>{
+    if(!currentUser){
+      openLogin();
+      return alert('Please login before checkout.');
+    }
     const total = Object.values(cart).reduce((s,i)=>s + i.price*i.qty,0);
-    if(total<=0) return alert('Your cart is empty');
-    alert('Checkout — total: $' + format(total) + '\n(This is a demo)');
-    // clear cart
+    if(total <= 0) return alert('Your cart is empty');
+    alert('Checkout — total: $' + format(total) + '\n(Logged in as ' + currentUser + ')');
     Object.keys(cart).forEach(k=>delete cart[k]);
     updateCartUI();
     cartPanel.setAttribute('aria-hidden','true');
+  });
+
+  loginToggle.addEventListener('click', openLogin);
+  logoutButton.addEventListener('click', logout);
+  closeLogin.addEventListener('click', closeLoginModal);
+  loginModal.addEventListener('click', e=>{ if(e.target === loginModal) closeLoginModal(); });
+
+  loginForm.addEventListener('submit', e=>{
+    e.preventDefault();
+    login(loginUser.value.trim(), loginPass.value);
   });
 
   searchEl.addEventListener('input', e=>{
@@ -87,7 +145,8 @@
     });
   });
 
-  // initial UI
   cartPanel.setAttribute('aria-hidden','true');
+  loginModal.setAttribute('aria-hidden','true');
   updateCartUI();
+  updateLoginUI();
 })();
