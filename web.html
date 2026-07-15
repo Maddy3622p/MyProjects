@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenLeaf Grocery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <h1 class="logo">GreenLeaf Grocery</h1>
+            <nav class="nav">
+                <input id="search" placeholder="Search products..." aria-label="Search products">
+            </nav>
+            <button id="cartToggle" class="cart-button">Cart (<span id="cartCount">0</span>)</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Fresh. Local. Affordable.</h2>
+            <p>Quality groceries delivered or ready for pickup.</p>
+        </section>
+
+        <section class="products" id="products">
+            <!-- Product cards -->
+            <article class="product" data-id="1" data-name="Bananas" data-price="0.79">
+                <img src="https://via.placeholder.com/200x140?text=Bananas" alt="Bananas">
+                <h3>Bananas</h3>
+                <p class="price">$0.79 / each</p>
+                <button class="add-to-cart">Add to cart</button>
+            </article>
+
+            <article class="product" data-id="2" data-name="Apples" data-price="1.29">
+                <img src="https://via.placeholder.com/200x140?text=Apples" alt="Apples">
+                <h3>Apples</h3>
+                <p class="price">$1.29 / lb</p>
+                <button class="add-to-cart">Add to cart</button>
+            </article>
+
+            <article class="product" data-id="3" data-name="Milk" data-price="2.49">
+                <img src="https://via.placeholder.com/200x140?text=Milk" alt="Milk">
+                <h3>Milk</h3>
+                <p class="price">$2.49</p>
+                <button class="add-to-cart">Add to cart</button>
+            </article>
+
+            <article class="product" data-id="4" data-name="Eggs" data-price="2.99">
+                <img src="https://via.placeholder.com/200x140?text=Eggs" alt="Eggs">
+                <h3>Eggs</h3>
+                <p class="price">$2.99 / dozen</p>
+                <button class="add-to-cart">Add to cart</button>
+            </article>
+
+            <article class="product" data-id="5" data-name="Bread" data-price="1.99">
+                <img src="https://via.placeholder.com/200x140?text=Bread" alt="Bread">
+                <h3>Bread</h3>
+                <p class="price">$1.99</p>
+                <button class="add-to-cart">Add to cart</button>
+            </article>
+        </section>
+    </main>
+
+    <aside id="cartPanel" class="cart-panel" aria-hidden="true">
+        <h3>Your Cart</h3>
+        <ul id="cartItems" class="cart-items"></ul>
+        <div class="cart-summary">
+            <div>Total: $<span id="cartTotal">0.00</span></div>
+            <button id="checkout" class="primary">Checkout</button>
+            <button id="closeCart">Close</button>
+        </div>
+    </aside>
+
+    <footer class="site-footer container">
+        <p>&copy; 2026 GreenLeaf Grocery — Fresh food near you.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
